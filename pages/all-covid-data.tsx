@@ -2,7 +2,7 @@ import React from "react";
 import { Bar } from 'react-chartjs-2';
 import Chart from 'chart.js/auto'
 import Nav from '../components/nav'
-import { Spacer, Text } from "@nextui-org/react";
+import { Spacer, Text, Container } from "@nextui-org/react";
 import _ from 'lodash'
 
 
@@ -37,7 +37,9 @@ class Home extends React.Component {
             <>
             <Nav />
             <Spacer y={3}/>
-            <Text style={{textAlign: 'center'}} h1>mortality rate in the USA COVID-19: {average.toFixed(5)}</Text>
+            <Text style={{textAlign: 'center'}} h1>All Covid Data</Text>
+            <Text style={{textAlign: 'center'}} h2>Global mortality average from COVID-19: {average.toFixed(5)}</Text>
+            <Container style={{maxWidth: '70vw', maxHeight: '80vh'}}>
             <Bar data={dataSets}  options={{
           plugins: {
             title: {
@@ -46,6 +48,7 @@ class Home extends React.Component {
             },
           }
         }} />
+        </Container>
             </>
         )
     }

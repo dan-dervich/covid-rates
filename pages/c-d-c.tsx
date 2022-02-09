@@ -1,4 +1,4 @@
-import { Grid, Spacer, Text } from "@nextui-org/react";
+import { Container, Grid, Spacer, Text } from "@nextui-org/react";
 import {Component} from "react";
 import Nav from "../components/nav";
 import { withRouter } from "next/router"
@@ -7,9 +7,9 @@ import { Bar } from "react-chartjs-2";
 
 class Home extends Component{
     static async getInitialProps(){
-        const res:any = await fetch('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/latest/owid-covid-latest.json')
-        const data:any = await res.json()
-        return data
+            const res:any = await fetch('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/latest/owid-covid-latest.json')
+            const data:any = await res.json()
+            return data
     }
     render(){
       Chart.register()
@@ -70,14 +70,16 @@ class Home extends Component{
             <Spacer y={1}/>
             <Text style={{textAlign: 'center'}} h2>Average Deaths in {query.country}: {average}</Text>
             </Grid.Container>
+            <Container style={{maxWidth: '70vw', maxHeight: '80vh'}}>
             <Bar data={dataSets}  options={{
-          plugins: {
-            title: {
-              display: true,
-              text: query.country ? `Covid Data in ${query.country}` : 'Covid Data Globally'
-            },
-          }
-        }} />
+                plugins: {
+                    title: {
+                        display: true,
+                        text: query.country ? `Covid Data in ${query.country}` : 'Covid Data Globally'
+                    },
+                }
+            }} />
+            </Container>
             </>
         )
     }
