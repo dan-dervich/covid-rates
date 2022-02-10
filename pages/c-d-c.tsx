@@ -5,7 +5,8 @@ import { withRouter } from "next/router"
 import Chart from 'chart.js/auto'
 import { Bar } from "react-chartjs-2";
 
-class Home extends Component{
+
+class Home extends Component<any, any>{
     static async getInitialProps(){
             const res:any = await fetch('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/latest/owid-covid-latest.json')
             const data:any = await res.json()
@@ -50,8 +51,8 @@ class Home extends Component{
         ]
         }
         let average:any = 0
-        average = total_deaths / total_cases ? total_deaths / total_cases : 0
-        average = average.toFixed(5) ? average.toFixed(5) : 0
+        average = total_deaths / total_cases ? total_deaths / total_cases * 100 : 0
+        average = average.toFixed(3) ? average.toFixed(3) : 0
         return(
             <>
             <Nav />
@@ -68,7 +69,7 @@ class Home extends Component{
                     })}
             </select>
             <Spacer y={1}/>
-            <Text style={{textAlign: 'center'}} h2>Average Deaths in {query.country}: {average}</Text>
+            <Text style={{textAlign: 'center'}} h2>Average Deaths in {query.country}: {average} %</Text>
             </Grid.Container>
             <Container style={{maxWidth: '70vw', maxHeight: '80vh'}}>
             <Bar data={dataSets}  options={{

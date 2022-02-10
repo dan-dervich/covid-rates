@@ -6,7 +6,7 @@ import { Spacer, Text, Container } from "@nextui-org/react";
 import _ from 'lodash'
 
 
-class Home extends React.Component {
+class Home extends React.Component<any, any> {
     static async getInitialProps(){
       const res:any = await fetch('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/latest/owid-covid-latest.json')
       const data: any = await res.json()
@@ -22,7 +22,7 @@ class Home extends React.Component {
           props[country].total_cases ? global_cases=global_cases+props[country].total_cases: null
         }
         let average:number = 0
-        average = global_deaths / global_cases
+        average = global_deaths / global_cases * 100
         const dataSets:any = {
             labels: ['Total Global Deaths', 'Total Global Cases'],
             datasets: [{
@@ -38,7 +38,7 @@ class Home extends React.Component {
             <Nav />
             <Spacer y={3}/>
             <Text style={{textAlign: 'center'}} h1>All Covid Data</Text>
-            <Text style={{textAlign: 'center'}} h2>Global mortality average from COVID-19: {average.toFixed(5)}</Text>
+            <Text style={{textAlign: 'center'}} h2>COVID-19 Global Mortality: {average.toFixed(3)}%</Text>
             <Container style={{maxWidth: '70vw', maxHeight: '80vh'}}>
             <Bar data={dataSets}  options={{
           plugins: {
