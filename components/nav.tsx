@@ -21,14 +21,18 @@ function Nav() {
             </Link>
             </Grid>
             <Grid>
-            <a href="/all-covid-data">
+            <Link href="/all-covid-data">
+            <a >
             <Text h2>All Covid Data</Text>
             </a>
+                </Link>
             </Grid>
             <Grid>
-            <a href="/c-d-c">
+            <Link href="/c-d-c">
+            <a >
             <Text h2>Covid Data By Country</Text>
             </a>
+            </Link>
             </Grid>
         </Grid.Container>
     )    
